@@ -28,14 +28,11 @@ class Espresso extends Coffee {
 
 class CoffeeFactory {
     public static Coffee createCoffee(CoffeeType type) {
-        switch (type) {
-            case LATTE:
-                return new Latte();
-            case ESPRESSO:
-                return new Espresso();
-            default:
-                throw new IllegalArgumentException("Invalid coffee type: " + type);
-        }
+        return switch (type) {
+            case LATTE -> new Latte();
+            case ESPRESSO -> new Espresso();
+            default -> throw new IllegalArgumentException("Invalid coffee type: " + type);
+        };
     }
 }
 
