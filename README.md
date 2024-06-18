@@ -15,10 +15,10 @@
 SingletonDoubleLock에 instance라는 변수에 volatile 키워드를 건 것을 볼 수 있는데요.
 여기서 instance라는 변수에 volatile 키워드를 건 것을 볼 수 있는데요.
 왜 그랬을까요?
-메모리 구조는 다음과 같습니다. 메인 메모리 위에 CPU 캐시메모리라고 불리는 L3, L3, L1 캐시가 있습니다. (L4도 드물긴 하지만 L4까지 CPU 캐시 메모리라고 부릅니다.)
-<img width="348" alt="image" src="https://github.com/SeongjinOliver/singleton-code/assets/55625864/5e22838b-6445-4e3f-ab93-13b0d97b490c">
+메모리 구조는 다음과 같습니다. 메인 메모리 위에 CPU 캐시메모리라고 불리는 L3, L3, L1 캐시가 있습니다. (L4도 드물긴 하지만 L4까지 CPU 캐시 메모리라고 부릅니다.)<br>
+<img width="348" alt="image" src="https://github.com/SeongjinOliver/singleton-code/assets/55625864/5e22838b-6445-4e3f-ab93-13b0d97b490c"><br>
 JAVA에서는 스레드 2개가 열리면 변수를 메인 메모리(RAM)으로부터 가져오는 것이 아니라 캐시메모리에서 각각의 캐시메모리를 기반으로 가져오게 됩니다.
-<img width="476" alt="image" src="https://github.com/SeongjinOliver/singleton-code/assets/55625864/826384fb-4b52-4ecb-bb71-4c93956c0124">
+<img width="476" alt="image" src="https://github.com/SeongjinOliver/singleton-code/assets/55625864/826384fb-4b52-4ecb-bb71-4c93956c0124"><br>
 voltile 키워드를 사용하면 Main Memory에 있는 변수를 CPU 캐시메모리에 캐시를 하지 않고 바로 Main Memory에서 가져오게 됩니다.
 
 ## 팩토리 패턴
@@ -27,3 +27,22 @@ voltile 키워드를 사용하면 Main Memory에 있는 변수를 CPU 캐시메�
 
 ## 이터레이턴 패턴
 이터레이터패턴은 이터레이터(iterator)를 사용하여 컨테이너의 요소들에 접근하는 디자인 패턴입니다. 각기 다른 자료구조들을 똑같은 인터페이스로 순회를 쉽게 할 수 있다는 장점이 있습니다. 컨테이너란 동일한 요소들을 담아놓는 집합을 말합니다. 배열, 맵등이 있습니다.
+
+## 의존성주입과 의존관계역전원칙
+의존성주입(Dependency Injection)이란 메인 모듈(main module)이 '직접' 다른 하위 모듈에 대한 의존성을 주기보다는 중간에 의존성 주입자(dependency injector)가 이 부분을 가로채 메인 모듈이 '간접'적으로 의존성을 주입하는 방식입니다.<br>
+<img width=400 alt="image" src="/images/의존성주입.png"><br>
+이를 통해 메인 모듈과 하위모듈간의 의존성을 조금 더 느슨하게 만들 수 있으며 모듈을 **쉽게 교체 가능한 구조**로 만듭니다.<br>
+### 의존한다. 라는 의미
+A가 B에 의존한다. = B가 변하면 A에 영향을 미치는 관계 = A -> B 를 의미한다.
+
+### 의존관계역전원칙
+의존성 주입을 할 때는 의존관계역전원칙(Dependency Inversion Principle)이 적용됩니다.  이는 2가지의 규칙을 지키는 상태를 말합니다.
+- 상위 모듈은 하위 모듈에 의존해서는 안된다. 둘다 추상화에 의존해야 한다.
+- 추상화는 세부사항에 의존해서는 안된다. 세부사항은 추상화에 따라 달라져야 한다.
+### 의존성 주입의 장점
+1. 외부에서 모듈을 생서하여 dev.add(new BackendDeveloper()) 이런식으로 집어 넣는 구조가 되기 때문에 모듈들을 쉽게 교체할 수 있는 구조가 됩니다.
+2. 단위 테스팅과 마이그레이션이 쉬워집니다.
+3. 애플리케이션 의존성 방향이 좀 더 일관되어 코드를 추론하기가 쉬워집니다.
+### 의존성 주입의 단점
+1. 결국에는 모듈이 더 생기게 되므로 복잡도가 증가합니다.
+2. 종속성 주입자체가 컴파일을 할 때가 아닌 런타임 때 일어나기 때문에 컴파일을 할 때 종속성 주입에 관한 에러를 잡기가 어려워질 수 있습니다.
