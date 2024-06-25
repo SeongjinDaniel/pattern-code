@@ -98,3 +98,14 @@ MVVM 패턴을 가진 대표적인 프레임워크로는 뷰(Vue.js)가 있습�
 |----|----------------|--------------|---------------|
 | 관계 | 컨트롤러와 뷰는 1 : n | 프레젠터와 뷰는 1:1 | 뷰모델과 뷰는 1 : n |
 | 참조 | 뷰는 컨트롤러를 참조 x | 뷰는 프레젠터를 참조 o | 뷰는 뷰 모델을 참조 o |
+
+## Spring의 MVC패턴 적용사례
+Spring은 자바기반으로 애플리케이션 개발을 할 때 많은 기능들을 제공하는 프레임워크입니다. 다음과 같은 아키텍처를 가지죠.
+<img width="476" alt="image" src="/images/SpringFrameWorkRuntime.png"><br>
+이 중에서 MVC 패턴이 적용된 Web 모듈의 Spring Web MVC를 살펴보겠습니다.
+### 디스패처 서블릿의 요청 처리과정
+
+<img width="476" alt="image" src="/images/DispatcherServlet.png"><br>
+
+
+
