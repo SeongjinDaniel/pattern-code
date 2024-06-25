@@ -104,8 +104,18 @@ Spring은 자바기반으로 애플리케이션 개발을 할 때 많은 기능�
 <img width="476" alt="image" src="/images/SpringFrameWorkRuntime.png"><br>
 이 중에서 MVC 패턴이 적용된 Web 모듈의 Spring Web MVC를 살펴보겠습니다.
 ### 디스패처 서블릿의 요청 처리과정
-
 <img width="476" alt="image" src="/images/DispatcherServlet.png"><br>
 
-
-
+## Flux 패턴
+flux패턴은 **단방향**으로 데이터 흐름을 관리하는 디자인패턴입니다.
+페이스북에서 "읽은 표시(mark seen)"에 대한 기능장애를 겪었습니다. 어떤 페이지에서는 메시지를 읽었는데 다른 페이지에서는 메시지가 안 읽었다과 뜨는 것이죠.
+### Flux 패턴의 구조
+<img width="476" alt="image" src="/images/FluxArchitecture.png"><br>
+#### Action
+사용자의 이벤트를 담당합니다. 마우스 ㅡㅋㄹ릭이나, 글을 쓴다던가 등을 의미하며 해당 이벤트에 관한 객체를 만들어내 dispatcher에게 전달합니다.
+#### Dispatcher
+Dispatcher는 들어오는 Action 객체 정보를 기반 어떠한 "행위"를 할 것인가를 결정합니다. 보통 action 객체의 type를 기반으로 미리 만들어 놓은 로직을 수행하고 이를 Store에 전달합니다.
+#### Store
+스토어는 애플리케이션 상태를 관리하고 저장하는 계층입니다. 도메인의 상태, 사용자의 인터페이스 등의 상태를 모두 저장합니다.
+#### View
+데이터를 기반으로 표출이 되는 사용자인터페이스입니다.
