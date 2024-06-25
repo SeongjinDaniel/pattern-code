@@ -124,3 +124,17 @@ Dispatcher는 들어오는 Action 객체 정보를 기반 어떠한 "행위"를 
 의존성주입이나 전략패턴 모두 무언가를 쉽게 교체하기 위한 디자인패턴이라는 공통점이 있습니다. 그러나 다음과 같은 차이가 있습니다.
 전략패턴: 어떠한 동일한 행동 계약을 기반으로 다양한 구현이 명시되어 있는 인터페이스를 만드는 것을 포함합니다.
 의존성주입: 단지 일부 동작을 구현하고 의존성을 주입하기만 하는 패턴입니다.
+
+## 컨텍스트
+컨텍스트는 2가지 뜻으로 씁니다.
+1. 어떤 종류의 상태, 환경을 캡슐화한 것을 말함.
+2. 작업이 중단 되고 나중에 같은 지점에서 계속 될 수 있도록 저장하는 최소 데이터 집합. (컨텍스트스위칭)
+
+context와 contextual information으로 나눠짐
+1. 병원에 가면 "이름"과 주민등록번호 앞자리를 말해야죠?
+자 여기서 "병원에 방문"하는 context에서 여러분의 이름은 contextual information
+2. HTTP 요청을 하는 context에서 HTTP Header는 contextual information이라고 할 수 있습니다.
+
+이러한 이론을 기반으로 한 다양한 모듈 또는 API로는 react.js에서는 전역적으로 “상태”값을 넘길 수 있는 context API가 있습니다.
+<img width="476" alt="image" src="/images/ContextAPI.png"><br>
+React에서 context API를 통해 전역적으로 static contextType을 통해 상태관리를 하는 모습입니다.
